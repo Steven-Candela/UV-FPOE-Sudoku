@@ -2,12 +2,22 @@ package com.sudoku.controlador;
 
 import javafx.fxml.FXML;
 import com.sudoku.modelo.Sudoku;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class GameController {
     @FXML
     private GridPane gridPrincipal;
+
+    @FXML
+    private Button btnPista;
+
+    @FXML
+    private Label labelPista;
+
+    private ManejadorPista manejadorPista;
 
     private final TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
@@ -17,6 +27,9 @@ public class GameController {
         sudoku = new Sudoku();
         cargarCeldas();
         llenarTablero();
+        manejadorPista = new ManejadorPista(sudoku, celdas, labelPista);
+
+        btnPista.setOnAction(e -> manejadorPista.darPista());
     }
 
     private void cargarCeldas() {

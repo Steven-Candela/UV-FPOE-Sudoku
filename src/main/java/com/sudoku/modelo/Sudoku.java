@@ -39,7 +39,7 @@ public class Sudoku implements ValidacionSudoku {
     }
 
     private void eliminarNumeros() {
-        int celdasAEliminar = 1;
+        int celdasAEliminar = 12;
         while (celdasAEliminar > 0) {
             int fila = RANDOM.nextInt(SIZE);
             int columna = RANDOM.nextInt(SIZE);
@@ -94,11 +94,11 @@ public class Sudoku implements ValidacionSudoku {
 
     @Override
     public boolean validarSubregion(int fila, int columna, int valor) {
-        int subgridRow = (fila / 2) * 2;
-        int subgridCol = (columna / 3) * 3;
+        int subgridRow = (fila / 3) * 3;
+        int subgridCol = (columna / 2) * 2;
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
                 if (tablero[subgridRow + i][subgridCol + j] == valor) return false;
             }
         }

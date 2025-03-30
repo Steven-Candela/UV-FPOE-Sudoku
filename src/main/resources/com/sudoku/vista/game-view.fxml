@@ -13,14 +13,6 @@
   </padding>
    <StackPane prefHeight="109.0" prefWidth="532.0">
       <children>
-         <ImageView accessibleRole="BUTTON" fitHeight="65.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="35.0">
-            <image>
-               <Image url="@../images/Pista.png" />
-            </image>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-         </ImageView>
          <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: None;" text="Sudoku" textAlignment="CENTER" textFill="#797979" translateY="-35.0">
             <font>
                <Font name="Century Gothic Bold" size="42.0" />
@@ -31,19 +23,40 @@
                <Font name="Century Gothic" size="15.0" />
             </font>
          </Label>
-         <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: None;" text="00:07" textAlignment="CENTER" textFill="#5b5b5b" translateX="162.0" translateY="60.0">
+         <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: None;" text="00:07" textAlignment="CENTER" textFill="#5b5b5b" translateY="60.0">
             <font>
                <Font name="Century Gothic" size="15.0" />
             </font>
          </Label>
-         <Label accessibleRole="BUTTON" alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="55.0" style="-fx-background-color: None;" text="Pista" textAlignment="CENTER" textFill="#5b5b5b" translateY="60.0">
+         <Button fx:id="btnPista" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="78.0" style="-fx-background-color: none;" textAlignment="CENTER" textFill="#5b5b5b" textOverrun="CLIP" translateX="136.0" translateY="45.0" wrapText="true">
             <font>
                <Font name="Century Gothic" size="15.0" />
             </font>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-         </Label>
+            <graphic>
+               <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <children>
+                     <ImageView accessibleRole="BUTTON" fitHeight="37.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" translateY="-5.0" StackPane.alignment="TOP_CENTER">
+                        <image>
+                           <Image url="@../images/Pista.png" />
+                        </image>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </ImageView>
+                     <Label fx:id="labelPista" alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: None;" text="Pistas: 0/3" textAlignment="CENTER" textFill="#5b5b5b" translateY="10.0" StackPane.alignment="BOTTOM_CENTER">
+                        <font>
+                           <Font name="Century Gothic" size="15.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </Label>
+                  </children>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </StackPane>
+            </graphic></Button>
       </children>
    </StackPane>
    <GridPane fx:id="gridPrincipal" alignment="CENTER" gridLinesVisible="true" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="361.0">
