@@ -76,19 +76,19 @@
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda02" alignment="CENTER" layoutX="71.0" layoutY="9.0" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
+               <TextField fx:id="celda10" alignment="CENTER" layoutX="71.0" layoutY="9.0" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda03" alignment="CENTER" layoutX="10.0" layoutY="69.0" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <TextField fx:id="celda11" alignment="CENTER" layoutX="10.0" layoutY="69.0" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda04" alignment="CENTER" layoutX="71.0" layoutY="69.0" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
+               <TextField fx:id="celda20" alignment="CENTER" layoutX="71.0" layoutY="69.0" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda05" alignment="CENTER" layoutX="10.0" layoutY="128.0" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <TextField fx:id="celda21" alignment="CENTER" layoutX="10.0" layoutY="128.0" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
@@ -105,27 +105,27 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <TextField fx:id="celda10" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
+               <TextField fx:id="celda30" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda11" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
+               <TextField fx:id="celda31" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda12" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
+               <TextField fx:id="celda40" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda13" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <TextField fx:id="celda41" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda14" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
+               <TextField fx:id="celda50" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
-               <TextField fx:id="celda15" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <TextField fx:id="celda51" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font></TextField>
@@ -142,32 +142,32 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <TextField fx:id="celda20" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
+               <TextField fx:id="celda02" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda21" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
+               <TextField fx:id="celda03" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda22" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
+               <TextField fx:id="celda12" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda23" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <TextField fx:id="celda13" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda24" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
+               <TextField fx:id="celda22" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda25" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <TextField fx:id="celda23" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
@@ -185,32 +185,32 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <TextField fx:id="celda30" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
+               <TextField fx:id="celda32" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda31" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
+               <TextField fx:id="celda33" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda32" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
+               <TextField fx:id="celda42" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda33" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <TextField fx:id="celda43" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda34" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
+               <TextField fx:id="celda52" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda35" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <TextField fx:id="celda53" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
@@ -228,32 +228,32 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <TextField fx:id="celda40" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
+               <TextField fx:id="celda04" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda41" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
+               <TextField fx:id="celda05" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda42" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
+               <TextField fx:id="celda14" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda43" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <TextField fx:id="celda15" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda44" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
+               <TextField fx:id="celda24" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda45" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <TextField fx:id="celda25" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
@@ -271,22 +271,22 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <TextField fx:id="celda50" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
+               <TextField fx:id="celda34" alignment="CENTER" prefHeight="60.0" prefWidth="62.0">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda51" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
+               <TextField fx:id="celda35" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda52" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
+               <TextField fx:id="celda44" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>
                </TextField>
-               <TextField fx:id="celda53" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <TextField fx:id="celda45" alignment="CENTER" prefHeight="60.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                      <Font name="Arial Bold" size="33.0" />
                   </font>

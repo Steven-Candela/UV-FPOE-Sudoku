@@ -1,7 +1,7 @@
 package com.sudoku.controlador;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import com.sudoku.modelo.Sudoku;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -9,32 +9,54 @@ public class GameController {
     @FXML
     private GridPane gridPrincipal;
 
-    @FXML
-    private TextField[][] celdas = new TextField[6][6];
+    private final TextField[][] celdas = new TextField[6][6];
+    private Sudoku sudoku;
 
     @FXML
     public void initialize() {
+        sudoku = new Sudoku();
         cargarCeldas();
+        llenarTablero();
     }
 
     private void cargarCeldas() {
         for (int fila = 0; fila < 6; fila++) {
             for (int columna = 0; columna < 6; columna++) {
-                String celdaId = "celda" + fila + columna;
-                TextField celda = (TextField) gridPrincipal.lookup("#" + celdaId);
+                TextField celda = (TextField) gridPrincipal.lookup("#celda" + fila + columna);
                 if (celda != null) {
                     celdas[fila][columna] = celda;
-                    configurarEventos(celda);
+                    configurarEventos(celda, fila, columna);
                 }
             }
         }
     }
 
-    private void configurarEventos(TextField celda) {
+    private void llenarTablero() {
+        int[][] tablero = sudoku.getTablero();
+        for (int fila = 0; fila < 6; fila++) {
+            for (int columna = 0; columna < 6; columna++) {
+                int valor = tablero[fila][columna];
+                if (valor != 0) {
+                    TextField celda = celdas[fila][columna];
+                    celda.setText(String.valueOf(valor));
+                    celda.setEditable(false);
+                }
+            }
+        }
+    }
+
+    private void configurarEventos(TextField celda, int fila, int columna) {
         celda.setOnKeyReleased(e -> {
-            String texto = celda.getText();
-            if (!texto.matches("[1-6]")) {
-                celda.setText("");
+            String texto = celda.getText().trim();
+            if (texto.matches("[1-6]")) {
+                int valor = Integer.parseInt(texto);
+                if (sudoku.validarMovimiento(fila, columna, valor)) {
+                    sudoku.setValor(fila, columna, valor);
+                } else {
+                    celda.clear();
+                }
+            } else {
+                celda.clear();
             }
         });
     }
