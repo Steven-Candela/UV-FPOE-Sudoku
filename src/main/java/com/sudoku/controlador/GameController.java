@@ -1,6 +1,8 @@
 package com.sudoku.controlador;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import com.sudoku.modelo.Sudoku;
 import javafx.scene.control.Button;
@@ -19,10 +21,27 @@ public class GameController {
     @FXML
     private Label labelPista;
 
+    @FXML
+    private Label labelCronometro;
+
+    private int segundos = 0;
+    private Timeline cronometro;
+
     private ManejadorPista manejadorPista;
 
     private final TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
+
+    private void iniciarCronometro() {
+        cronometro = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            segundos++;
+            int min = segundos / 60;
+            int seg = segundos % 60;
+            labelCronometro.setText(String.format("%02d:%02d", min, seg));
+        }));
+        cronometro.setCycleCount(Timeline.INDEFINITE);
+        cronometro.play();
+    }
 
     /**
      * Método que se ejecuta automáticamente al inicializar la vista del juego.
@@ -41,6 +60,7 @@ public class GameController {
         manejadorPista = new ManejadorPista(sudoku, celdas, labelPista);
 
         btnPista.setOnAction(e -> manejadorPista.darPista());
+        iniciarCronometro();
     }
 
     /**
