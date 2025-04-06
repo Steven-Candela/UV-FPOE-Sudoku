@@ -1,11 +1,13 @@
 package com.sudoku.controlador;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import com.sudoku.modelo.Sudoku;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 public class GameController {
     @FXML
@@ -96,9 +98,18 @@ public class GameController {
             if (texto.matches("[1-6]")) {
                 int valor = Integer.parseInt(texto);
                 if (sudoku.validarMovimiento(fila, columna, valor)) {
+                    celda.setEditable(false);
                     sudoku.setValor(fila, columna, valor);
+
+                    celda.setStyle("-fx-background-color: #9aff84;");
+                    PauseTransition pausa = new PauseTransition(Duration.seconds(1));
+                    pausa.setOnFinished(event -> celda.setStyle(""));
+                    pausa.play();
+                } else {
+                    celda.setStyle("-fx-background-color: #ff8484;");
                 }
             } else {
+                celda.setStyle("");
                 celda.clear();
             }
         });
