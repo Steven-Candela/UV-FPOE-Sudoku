@@ -5,6 +5,7 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import com.sudoku.modelo.Sudoku;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -26,6 +27,11 @@ public class GameController {
 
     private int segundos = 0;
     private Timeline cronometro;
+
+    @FXML
+    private Label LabelErrores;
+    private int errores = 0;
+
 
     private ManejadorPista manejadorPista;
 
@@ -103,6 +109,14 @@ public class GameController {
         }
     }
 
+    private void mostrarAlertaDerrota() {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Limite de errores");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Has cometido muchos errores, has perdido...");
+        alerta.showAndWait();
+    }
+
     /**
      * Configura los eventos del teclado para una celda específica del tablero
      * Este metodo asigna un evento que se ejecuta cuando el jugador ingresa un valor en una celda, este
@@ -112,6 +126,8 @@ public class GameController {
      * @param fila     La fila de la celda dentro del tablero.
      * @param columna  La columna de la celda dentro del tablero.
     */
+
+
     private void configurarEventos(TextField celda, int fila, int columna) {
         celda.setOnKeyReleased(e -> {
             String texto = celda.getText().trim();
@@ -127,6 +143,13 @@ public class GameController {
                     pausa.play();
                 } else {
                     celda.setStyle("-fx-background-color: #ff8484;");
+                    errores++;
+                    LabelErrores.setText("Errores: " + errores + "/3");
+                    System.out.println("Error por parte del usuario: " + errores + " errores totales");
+
+                    if (errores >= 3) {
+                        mostrarAlertaDerrota();
+                    }
                 }
             } else {
                 celda.setStyle("");
@@ -135,3 +158,4 @@ public class GameController {
         });
     }
 }
+
