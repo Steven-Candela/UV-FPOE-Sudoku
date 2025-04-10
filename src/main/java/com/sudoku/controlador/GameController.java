@@ -1,8 +1,11 @@
 package com.sudoku.controlador;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import com.sudoku.modelo.Sudoku;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,10 +22,32 @@ public class GameController {
     @FXML
     private Label labelPista;
 
+    @FXML
+    private Label labelCronometro;
+
+    private int segundos = 0;
+    private Timeline cronometro;
+
+    @FXML
+    private Label LabelErrores;
+    private int errores = 0;
+
+
     private ManejadorPista manejadorPista;
 
     private final TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
+
+    private void iniciarCronometro() {
+        cronometro = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            segundos++;
+            int min = segundos / 60;
+            int seg = segundos % 60;
+            labelCronometro.setText(String.format("%02d:%02d", min, seg));
+        }));
+        cronometro.setCycleCount(Timeline.INDEFINITE);
+        cronometro.play();
+    }
 
     /**
      * Método que se ejecuta automáticamente al inicializar la vista del juego.
@@ -41,6 +66,7 @@ public class GameController {
         manejadorPista = new ManejadorPista(sudoku, celdas, labelPista);
 
         btnPista.setOnAction(e -> manejadorPista.darPista());
+        iniciarCronometro();
     }
 
     /**
@@ -83,6 +109,14 @@ public class GameController {
         }
     }
 
+    private void mostrarAlertaDerrota() {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Limite de errores");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Has cometido muchos errores, has perdido...");
+        alerta.showAndWait();
+    }
+
     /**
      * Configura los eventos del teclado para una celda específica del tablero
      * Este metodo asigna un evento que se ejecuta cuando el jugador ingresa un valor en una celda, este
@@ -91,7 +125,9 @@ public class GameController {
      * @param celda    El TextField correspondiente a una celda del tablero.
      * @param fila     La fila de la celda dentro del tablero.
      * @param columna  La columna de la celda dentro del tablero.
-    */
+     */
+
+
     private void configurarEventos(TextField celda, int fila, int columna) {
         celda.setOnKeyReleased(e -> {
             String texto = celda.getText().trim();
@@ -107,6 +143,13 @@ public class GameController {
                     pausa.play();
                 } else {
                     celda.setStyle("-fx-background-color: #ff8484;");
+                    errores++;
+                    LabelErrores.setText("Errores: " + errores + "/3");
+                    System.out.println("Error por parte del usuario: " + errores + " errores totales");
+
+                    if (errores >= 3) {
+                        mostrarAlertaDerrota();
+                    }
                 }
             } else {
                 celda.setStyle("");
