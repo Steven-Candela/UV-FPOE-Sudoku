@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.sudoku.controlador.MenuController" prefWidth="600" prefHeight="400">
+    <StackPane prefWidth="600" prefHeight="400">
+        <!-- Fondo opcional (color claro o imagen) -->
+        <VBox alignment="CENTER" spacing="25.0">
+            <Text text="SUDOKU 6x6" fill="#5b5b5b">
+                <font>
+                    <Font name="Century Gothic Bold" size="42"/>
+                </font>
+            </Text>
+
+            <Button fx:id="btnJugar" text="Jugar" onAction="#irAJugar" prefWidth="200" prefHeight="45" style="-fx-background-color: #dcdcdc; -fx-font-size: 16px; -fx-font-family: 'Century Gothic';"/>
+            <Button fx:id="btnReglas" text="¿Cómo jugar?" onAction="#verReglas" prefWidth="200" prefHeight="45" style="-fx-background-color: #dcdcdc; -fx-font-size: 16px; -fx-font-family: 'Century Gothic';"/>
+            <Button fx:id="btnCreditos" text="Créditos" onAction="#verCreditos" prefWidth="200" prefHeight="45" style="-fx-background-color: #dcdcdc; -fx-font-size: 16px; -fx-font-family: 'Century Gothic';"/>
+            <Button fx:id="btnSalir" text="Salir" onAction="#salirDelJuego" prefWidth="200" prefHeight="45" style="-fx-background-color: #ff6b6b; -fx-font-size: 16px; -fx-font-family: 'Century Gothic'; -fx-text-fill: white;"/>
+        </VBox>
+    </StackPane>
+</AnchorPane>
