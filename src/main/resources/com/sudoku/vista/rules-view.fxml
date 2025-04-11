@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="474.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sudoku.controlador.ReglasController">
+    <VBox alignment="CENTER" layoutX="50" layoutY="40" prefHeight="400" prefWidth="600.0" spacing="25.0">
+        <Label text="¿Cómo jugar Sudoku 6x6?" textFill="#5b5b5b">
+            <font>
+                <Font name="Century Gothic Bold" size="26" />
+            </font>
+        </Label>
+
+        <TextArea editable="false" prefHeight="200" prefWidth="480" style="-fx-font-size: 16px; -fx-font-family: 'Century Gothic';" wrapText="true">
+            <text>
+                • Llena la cuadrícula 6x6 con los números del 1 al 6.
+                • Cada fila, columna y bloque debe contener todos los números sin repetirse.
+                • Usa la lógica y no adivinaciones.
+                • Puedes pedir pistas, pero tienes un límite.
+
+                ¡Buena suerte!
+            </text>
+        </TextArea>
+
+        <Button fx:id="btnVolver" onAction="#volverAlMenu" prefHeight="45" prefWidth="200" style="-fx-background-color: #dcdcdc; -fx-font-size: 16px; -fx-font-family: 'Century Gothic';" text="Volver al menú" />
+    </VBox>
+</AnchorPane>

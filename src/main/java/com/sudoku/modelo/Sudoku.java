@@ -173,17 +173,6 @@ public class Sudoku implements ValidacionSudoku {
         return validarFila(fila, valor) && validarColumna(columna, valor) && validarSubregion(fila, columna, valor);
     }
 
-    /**
-     * Verifica si el juego de Sudoku ha sido completado.
-     *
-     * Recorre todas las celdas del tablero y comprueba que no haya ninguna con el valor 0,
-     * lo cual indica que están todas las celdas llenas.
-     *
-     * @return {@code true} si el tablero está completamente lleno (sin ceros), {@code false} en caso contrario.
-     */
-    public boolean esJuegoTerminado() {
-        return Arrays.stream(tablero).flatMapToInt(Arrays::stream).noneMatch(num -> num == 0);
-    }
 
     /**
      * Establece un valor en la posición indicada del tablero si el movimiento es válido.
@@ -217,3 +206,4 @@ public class Sudoku implements ValidacionSudoku {
         return tablero;
     }
 }
+
