@@ -20,6 +20,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+/**
+ * Controlador del juego principal de Sudoku 6x6
+ * Se encarga de manejar la lógica del tablero, el cronómetro, las pistas y los errores del jugador
+ */
 public class GameController {
     @FXML
     private GridPane gridPrincipal;
@@ -34,9 +38,6 @@ public class GameController {
     private Label labelCronometro;
 
     @FXML
-    private Button btnVolverMenu;
-
-    @FXML
     private Label LabelErrores;
 
     private int segundos = 0;
@@ -47,6 +48,9 @@ public class GameController {
     private final TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
 
+    /**
+     * Inicia el cronómetro y actualiza la etiqueta cada segundo
+     */
     private void iniciarCronometro() {
         cronometro = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             segundos++;
@@ -58,6 +62,12 @@ public class GameController {
         cronometro.play();
     }
 
+    /**
+     * Cambia de escena y vuelve al menú principal
+     *
+     * @param event Evento que se genera al presionar el botón de volver
+     * @throws IOException Si hay un error al cargar el archivo FXML
+     */
     @FXML
     private void volverAlMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sudoku/vista/menu-view.fxml"));
@@ -68,17 +78,30 @@ public class GameController {
         stage.setTitle("Menú Principal");
     }
 
+    /**
+     * Método que se ejecuta automáticamente cuando se carga la vista
+     * Inicializa el tablero, el cronómetro y configura el botón de pista
+     */
     @FXML
     public void initialize() {
         sudoku = new Sudoku();
         cargarCeldas();
         llenarTablero();
-        manejadorPista = new ManejadorPista(sudoku, celdas, labelPista);
+        manejadorPista = new ManejadorPista(sudoku, celdas, labelPista, () -> {
+            if (tableroCompleto()) {
+                detenerJuego();
+                mostrarAlertaVictoria();
+            }
+        });
 
         btnPista.setOnAction(e -> manejadorPista.darPista());
         iniciarCronometro();
     }
 
+    /**
+     * Busca cada TextField del tablero usando su ID y los guarda en la matriz
+     * También configura los eventos cuando el jugador escribe un número
+     */
     private void cargarCeldas() {
         for (int fila = 0; fila < 6; fila++) {
             for (int columna = 0; columna < 6; columna++) {
@@ -91,6 +114,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Llena el tablero con los valores generados por la clase Sudoku
+     * Los valores que ya vienen en el tablero no se pueden modificar
+     */
     private void llenarTablero() {
         int[][] tablero = sudoku.getTablero();
         for (int fila = 0; fila < 6; fila++) {
@@ -105,6 +132,14 @@ public class GameController {
         }
     }
 
+    /**
+     * Configura qué sucede cuando el jugador escribe en una celda del tablero
+     * Verifica si el número ingresado es válido o si se comete un error
+     *
+     * @param celda   El TextField específico de esa posición
+     * @param fila    La fila de la celda
+     * @param columna La columna de la celda
+     */
     private void configurarEventos(TextField celda, int fila, int columna) {
         celda.setOnKeyReleased(e -> {
             String texto = celda.getText().trim();
@@ -127,7 +162,6 @@ public class GameController {
                     celda.setStyle("-fx-background-color: #ff8484;");
                     errores++;
                     LabelErrores.setText("Errores: " + errores + "/3");
-                    System.out.println("Error por parte del usuario: " + errores + " errores totales");
 
                     if (errores >= 3) {
                         detenerJuego();
@@ -141,6 +175,11 @@ public class GameController {
         });
     }
 
+    /**
+     * Recorre todo el tablero para verificar si ya está completamente lleno
+     *
+     * @return true si el tablero está completo, false si hay celdas vacías
+     */
     private boolean tableroCompleto() {
         int[][] tablero = sudoku.getTablero();
         for (int fila = 0; fila < 6; fila++) {
@@ -153,6 +192,9 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Muestra una alerta informando al jugador que ha perdido el juego por errores
+     */
     private void mostrarAlertaDerrota() {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Límite de errores");
@@ -161,6 +203,9 @@ public class GameController {
         alerta.showAndWait();
     }
 
+    /**
+     * Muestra una alerta informando al jugador que ha ganado el juego
+     */
     private void mostrarAlertaVictoria() {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("¡Victoria!");
@@ -169,6 +214,10 @@ public class GameController {
         alerta.showAndWait();
     }
 
+    /**
+     * Detiene el cronómetro, desactiva las celdas y el botón de pista
+     * Esto se usa al terminar el juego, ya sea por victoria o derrota
+     */
     private void detenerJuego() {
         if (cronometro != null) {
             cronometro.stop();

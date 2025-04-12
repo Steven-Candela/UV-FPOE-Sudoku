@@ -1,47 +1,45 @@
 package com.sudoku.modelo;
 
 /**
- * Interfaz que define las validaciones necesarias para un juego de Sudoku.
- * Se utiliza para verificar si un número puede colocarse en una fila, columna,
- * subregión o posición específica del tablero sin violar las reglas del juego
+ * Interfaz que define los métodos necesarios para validar los movimientos en un Sudoku
+ * Esta interfaz permite validar filas, columnas, subregiones y movimientos generales
+ * en un tablero de Sudoku
  */
 public interface ValidacionSudoku {
 
     /**
-     * Válida si un valor puede colocarse en una fila específica del tablero.
-     *
-     * @param fila  La fila donde se desea colocar el valor (0 a 5).
-     * @param valor El número que se desea colocar (1 a 6).
-     * @return true si el valor no está repetido en la fila, false en caso contrario
+     * Valida si el valor propuesto es válido en la fila especificada
+     * @param fila El número de la fila que se quiere validar
+     * @param valor El valor que se quiere poner en la fila
+     * @return true si el valor es válido para la fila, false si no lo es
      */
     boolean validarFila(int fila, int valor);
 
     /**
-     * Válida si un valor puede colocarse en una columna específica del tablero
-     *
-     * @param columna La columna donde se desea colocar el valor
-     * @param valor   El número que se desea colocar
-     * @return true si el valor no está repetido en la columna, false en caso contrario
+     * Valida si el valor propuesto es válido en la columna especificada
+     * @param columna El número de la columna que se quiere validar
+     * @param valor El valor que se quiere poner en la columna
+     * @return true si el valor es válido para la columna, false si no lo es
      */
     boolean validarColumna(int columna, int valor);
 
     /**
-     * Válida si un valor puede colocarse en la subregión correspondiente a una posición
-     *
-     * @param fila    La fila de la celda
-     * @param columna La columna de la celda
-     * @param valor   El número que se desea colocar
-     * @return true si el valor no está repetido en la subregión, false en caso contrario
+     * Valida si el valor propuesto es válido en la subregión especificada
+     * Las subregiones son áreas dentro del tablero de Sudoku
+     * @param fila El número de la fila en la que se encuentra la celda a validar
+     * @param columna El número de la columna en la que se encuentra la celda a validar
+     * @param valor El valor que se quiere poner en la subregión
+     * @return true si el valor es válido para la subregión, false si no lo es
      */
     boolean validarSubregion(int fila, int columna, int valor);
 
     /**
-     * Válida si un movimiento es válido teniendo en cuenta la fila, columna y subregión
-     *
-     * @param fila    La fila de la celda
-     * @param columna La columna de la celda
-     * @param valor   El número que se desea colocar
-     * @return true si el movimiento cumple con todas las reglas del Sudoku, false en caso contrario
+     * Valida si un movimiento propuesto es válido. Este método debe combinar la validación
+     * de fila, columna y subregión
+     * @param fila El número de la fila donde se desea hacer el movimiento
+     * @param columna El número de la columna donde se desea hacer el movimiento
+     * @param valor El valor que se quiere poner en la celda
+     * @return true si el movimiento es válido, false si no lo es
      */
     boolean validarMovimiento(int fila, int columna, int valor);
 }

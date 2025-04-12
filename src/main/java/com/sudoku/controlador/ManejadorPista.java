@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.util.*;
 
+
 public class ManejadorPista {
     private Sudoku sudoku;
     private TextField[][] celdas;
@@ -14,35 +15,28 @@ public class ManejadorPista {
     private static final int MAX_PISTAS = 3;
     private Label labelPista;
 
+    private Runnable verificadorVictoria;
 
     /**
-     * Constructor de la clase ManejadorPista
-     * Se encarga de inicializar las pistas del juego, incluyendo
-     * la referencia al tablero, las celdas y el label que muestra
-     * el número de pistas restantes
+     * Constructor del ManejadorPista
      *
-     * @param sudoku El objeto Sudoku que contiene la lógica del juego
-     * @param celdas La matriz de TextField que representa las celdas del tablero
-     * @param labelPista La etiqueta donde se mostrará la cantidad de pistas restantes
+     * @param sudoku el objeto Sudoku con el tablero y métodos de validación
+     * @param celdas la matriz de TextFields que representa la interfaz del tablero
+     * @param labelPista el Label donde se muestra la cantidad de pistas usadas
      */
-    public ManejadorPista(Sudoku sudoku, TextField[][] celdas, Label labelPista) {
+    public ManejadorPista(Sudoku sudoku, TextField[][] celdas, Label labelPista, Runnable verificadorVictoria) {
         this.sudoku = sudoku;
         this.celdas = celdas;
         this.celdasConPista = new HashSet<>();
         this.labelPista = labelPista;
+        this.verificadorVictoria = verificadorVictoria;
         actualizarLabel();
     }
 
     /**
-     * Da una pista al jugador colocando un número correcto en una celda vacía
-     *
-     * - Verifica que no se haya excedido el número máximo de pistas permitidas
-     * - Busca una celda vacía que aún no haya recibido una pista
-     * - Selecciona una celda aleatoriamente y obtiene su valor correcto
-     * - Rellena la celda con el número correcto, la hace no editable
-     *   y actualiza la cantidad de pistas usadas
-     *
-     * Si ya se alcanzó el límite de pistas, muestra una alerta
+     * Da una pista al jugador, coloca un número correcto en una celda vacía
+     * Solo se permite hasta un máximo de 3 pistas
+     * Si se supera el límite, se muestra una alerta
      */
     public void darPista() {
         if (pistasUsadas >= MAX_PISTAS) {
@@ -53,6 +47,7 @@ public class ManejadorPista {
         List<int[]> celdasDisponibles = new ArrayList<>();
         int[][] tablero = sudoku.getTablero();
 
+        // Buscar todas las celdas vacías que aún no tienen pista.
         for (int fila = 0; fila < 6; fila++) {
             for (int columna = 0; columna < 6; columna++) {
                 String coordenada = fila + "," + columna;
@@ -62,30 +57,38 @@ public class ManejadorPista {
             }
         }
 
+        // Elegir una celda vacía al azar para dar la pista.
         Random random = new Random();
         int[] seleccionada = celdasDisponibles.get(random.nextInt(celdasDisponibles.size()));
         int fila = seleccionada[0];
         int columna = seleccionada[1];
 
+        // Obtener un número válido para esa celda.
         int solucion = encontrarSolucion(fila, columna);
         if (solucion != -1) {
             celdas[fila][columna].setText(String.valueOf(solucion));
             celdas[fila][columna].setEditable(false);
             celdasConPista.add(fila + "," + columna);
 
+            sudoku.setValor(fila, columna, solucion); // Actualiza el tablero lógico
+            celdasConPista.add(fila + "," + columna);
+
             pistasUsadas++;
             actualizarLabel();
+
+            // Verificar si el tablero ya está completo
+            if (verificadorVictoria != null) {
+                verificadorVictoria.run();
+            }
         }
     }
 
     /**
-     * Intenta encontrar un número válido del 1 al 6 que se pueda colocar en la celda especificada,
-     * cumpliendo con las reglas del Sudoku
+     * Encuentra un número válido para colocar en la celda indicada
      *
-     * @param fila    la fila de la celda a evaluar.
-     * @param columna la columna de la celda a evaluar.
-     * @return un número válido entre 1 y 6 que se puede colocar en esa posición,
-     *         o 0 si no hay ningún número válido disponible.
+     * @param fila la fila de la celda
+     * @param columna la columna de la celda
+     * @return un número válido entre 1 y 6 o 0 si no encuentra ninguno
      */
     private int encontrarSolucion(int fila, int columna) {
         for (int num = 1; num <= 6; num++) {
@@ -97,11 +100,7 @@ public class ManejadorPista {
     }
 
     /**
-     * Muestra una alerta al jugador indicando que
-     * ha alcanzado el límite de pistas disponibles
-     *
-     * La alerta tiene un título y un mensaje
-     * Se detiene la ejecución hasta que el jugador cierre la alerta
+     * Muestra una alerta al usuario indicando que ya se usó todas las pistas disponibles
      */
     private void mostrarAlerta() {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -111,6 +110,9 @@ public class ManejadorPista {
         alerta.showAndWait();
     }
 
+    /**
+     * Actualiza el texto del Label que muestra cuántas pistas se han usado
+     */
     private void actualizarLabel() {
         labelPista.setText("Pistas: " + pistasUsadas + "/3");
     }
