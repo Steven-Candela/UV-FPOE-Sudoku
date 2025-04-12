@@ -40,6 +40,9 @@ public class GameController {
     @FXML
     private Label LabelErrores;
 
+    @FXML
+    private Label LabelCuatroRestantes;
+
     private int segundos = 0;
     private Timeline cronometro;
     private int errores = 0;
@@ -47,6 +50,8 @@ public class GameController {
     private ManejadorPista manejadorPista;
     private final TextField[][] celdas = new TextField[6][6];
     private Sudoku sudoku;
+
+
 
     /**
      * Inicia el cronómetro y actualiza la etiqueta cada segundo
@@ -85,6 +90,7 @@ public class GameController {
     @FXML
     public void initialize() {
         sudoku = new Sudoku();
+        LabelCuatroRestantes.setText("4 Restantes:" + sudoku.getCuatrosRestantes());
         cargarCeldas();
         llenarTablero();
         manejadorPista = new ManejadorPista(sudoku, celdas, labelPista, () -> {
@@ -148,6 +154,7 @@ public class GameController {
                 if (sudoku.validarMovimiento(fila, columna, valor)) {
                     celda.setEditable(false);
                     sudoku.setValor(fila, columna, valor);
+                    LabelCuatroRestantes.setText("4 Restantes:" + sudoku.getCuatrosRestantes());
 
                     celda.setStyle("-fx-background-color: #9aff84;");
                     PauseTransition pausa = new PauseTransition(Duration.seconds(1));

@@ -10,6 +10,15 @@ public class Sudoku implements ValidacionSudoku {
     private final int[][] tablero;
     private static final int SIZE = 6;
     private static final Random RANDOM = new Random();
+    public int cuatrosRestantes;
+
+    public int getCuatrosRestantes(){
+        return cuatrosRestantes;
+    }
+
+    public void setCuatrosRestantes(int cuatrosRestantes) {
+        this.cuatrosRestantes = cuatrosRestantes;
+    }
 
     /**
      * Constructor que inicializa el tablero de Sudoku y lo genera
@@ -72,13 +81,17 @@ public class Sudoku implements ValidacionSudoku {
             int columna = RANDOM.nextInt(SIZE); // Escoge una columna aleatoria
 
             if (tablero[fila][columna] != 0) { // Si la celda no está vacía
-                int respaldo = tablero[fila][columna]; // Guarda el valor
+                int respaldo = tablero[fila][columna];// Guarda el valor
                 tablero[fila][columna] = 0; // Elimina el número
 
                 // Verifica si la solución sigue siendo única
                 if (!esSolucionUnica()) {
                     tablero[fila][columna] = respaldo; // Restaura el número si no es único
                 } else {
+                    if (respaldo == 4) {
+                        cuatrosRestantes++;
+                        System.out.println(cuatrosRestantes);
+                    }
                     celdasAEliminar--; // Reduce el contador de celdas a eliminar
                 }
             }
@@ -161,10 +174,9 @@ public class Sudoku implements ValidacionSudoku {
     public boolean validarSubregion(int fila, int columna, int valor) {
         int subgridRow = (fila / 3) * 3; // Fila inicial de la subregión
         int subgridCol = (columna / 2) * 2; // Columna inicial de la subregión
-
         for (int i = 0; i < 3; i++) { // Itera sobre las filas de la subregión
             for (int j = 0; j < 2; j++) { // Itera sobre las columnas de la subregión
-                if (tablero[subgridRow + i][subgridCol + j] == valor) return false; // Si el valor ya está en la subregión, retorna false
+                if (tablero[subgridRow + i][subgridCol + j] == valor) return false;// Si el valor ya está en la subregión, retorna false
             }
         }
         return true; // Si no se encuentra el valor, retorna true
@@ -192,6 +204,9 @@ public class Sudoku implements ValidacionSudoku {
      */
     public void setValor(int fila, int columna, int valor) {
         if (validarMovimiento(fila, columna, valor)) tablero[fila][columna] = valor;
+        if (valor == 4 ) {
+            cuatrosRestantes--;
+        }
     }
 
     /**

@@ -18,6 +18,11 @@
                <Font name="Century Gothic Bold" size="42.0" />
             </font>
          </Label>
+         <Label fx:id="LabelCuatroRestantes" alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="50.0" prefHeight="21.0" prefWidth="136.0" style="-fx-background-color: None;" text="4 Restantes: 0" textAlignment="CENTER" textFill="#5b5b5b" translateY="20.0">
+            <font>
+               <Font name="Century Gothic" size="15.0" />
+            </font>
+         </Label>
          <Label fx:id="LabelErrores" alignment="CENTER" contentDisplay="CENTER" style="-fx-background-color: None;" text="Errores: 0/3" textAlignment="CENTER" textFill="#5b5b5b" translateX="-140.0" translateY="60.0">
             <font>
                <Font name="Century Gothic" size="15.0" />
