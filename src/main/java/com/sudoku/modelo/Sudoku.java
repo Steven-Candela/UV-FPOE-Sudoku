@@ -61,11 +61,29 @@ public class Sudoku implements ValidacionSudoku {
         eliminarNumeros(); // Elimina algunos números para crear el Sudoku jugable
     }
 
+
     /**
      * Elimina números del tablero para crear un Sudoku con casillas vacías
      * Garantiza que el Sudoku tenga una única solución
      */
     private void eliminarNumeros() {
+        int[] columnas = {0, 1 ,2 ,3 ,4 ,5};
+        int columna_2;
+        int columna_1 = RANDOM.nextInt(SIZE);
+        do{
+            columna_2 = RANDOM.nextInt(SIZE);
+        } while(columna_1 == columna_2);
+        for (int fila = 0; fila < SIZE; fila++) {
+            for (int columna = 0; columna < SIZE; columna++) {
+                if (columna != columna_1 && columna != columna_2) {
+                    tablero[fila][columna] = 0;
+                }
+            }
+        }
+    }
+
+
+        /*
         int celdasAEliminar = 12; // Número de celdas a eliminar
         while (celdasAEliminar > 0) {
             int fila = RANDOM.nextInt(SIZE); // Escoge una fila aleatoria
@@ -75,7 +93,7 @@ public class Sudoku implements ValidacionSudoku {
                 int respaldo = tablero[fila][columna]; // Guarda el valor
                 tablero[fila][columna] = 0; // Elimina el número
 
-                // Verifica si la solución sigue siendo única
+                //// Verifica si la solución sigue siendo única
                 if (!esSolucionUnica()) {
                     tablero[fila][columna] = respaldo; // Restaura el número si no es único
                 } else {
@@ -85,6 +103,7 @@ public class Sudoku implements ValidacionSudoku {
         }
     }
 
+         */
     /**
      * Verifica si el tablero tiene una única solución
      * Esto es importante para asegurarse de que el Sudoku tenga una única forma de resolverse
