@@ -40,6 +40,9 @@ public class GameController {
     @FXML
     private Label LabelErrores;
 
+    @FXML
+    private Label CuatrosRestantes;
+
     private int segundos = 0;
     private Timeline cronometro;
     private int errores = 0;
@@ -78,6 +81,11 @@ public class GameController {
         stage.setTitle("Menú Principal");
     }
 
+    private void Cambiarnumerodecuatros(Label labelModificar){
+        int numeroDecuatros = sudoku.getNumeroDeCuatros();
+        labelModificar.setText("Cuatros restantes: "+ numeroDecuatros);
+    }
+
     /**
      * Método que se ejecuta automáticamente cuando se carga la vista
      * Inicializa el tablero, el cronómetro y configura el botón de pista
@@ -85,6 +93,7 @@ public class GameController {
     @FXML
     public void initialize() {
         sudoku = new Sudoku();
+        Cambiarnumerodecuatros(CuatrosRestantes);
         cargarCeldas();
         llenarTablero();
         manejadorPista = new ManejadorPista(sudoku, celdas, labelPista, () -> {
@@ -132,6 +141,7 @@ public class GameController {
         }
     }
 
+
     /**
      * Configura qué sucede cuando el jugador escribe en una celda del tablero
      * Verifica si el número ingresado es válido o si se comete un error
@@ -148,7 +158,7 @@ public class GameController {
                 if (sudoku.validarMovimiento(fila, columna, valor)) {
                     celda.setEditable(false);
                     sudoku.setValor(fila, columna, valor);
-
+                    Cambiarnumerodecuatros(CuatrosRestantes);
                     celda.setStyle("-fx-background-color: #9aff84;");
                     PauseTransition pausa = new PauseTransition(Duration.seconds(1));
                     pausa.setOnFinished(event -> celda.setStyle(""));
@@ -158,6 +168,7 @@ public class GameController {
                         detenerJuego();
                         mostrarAlertaVictoria();
                     }
+
                 } else {
                     celda.setStyle("-fx-background-color: #ff8484;");
                     errores++;

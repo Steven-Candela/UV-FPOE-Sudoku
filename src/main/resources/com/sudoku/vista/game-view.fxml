@@ -57,6 +57,7 @@
                   </cursor>
                </StackPane>
             </graphic></Button>
+         <Label fx:id="CuatrosRestantes" text="Cuatros restantes :" />
       </children>
    </StackPane>
    <GridPane fx:id="gridPrincipal" alignment="CENTER" gridLinesVisible="true" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="361.0">

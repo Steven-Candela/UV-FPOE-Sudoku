@@ -1,5 +1,7 @@
 package com.sudoku.modelo;
 
+import com.sudoku.controlador.GameController;
+
 import java.util.*;
 
 /**
@@ -10,7 +12,7 @@ public class Sudoku implements ValidacionSudoku {
     private final int[][] tablero;
     private static final int SIZE = 6;
     private static final Random RANDOM = new Random();
-
+    int NumeroDeCuatros;
     /**
      * Constructor que inicializa el tablero de Sudoku y lo genera
      */
@@ -18,6 +20,11 @@ public class Sudoku implements ValidacionSudoku {
         tablero = new int[SIZE][SIZE];
         generarTablero();
     }
+
+    public int getNumeroDeCuatros() {
+        return NumeroDeCuatros;
+    }
+
 
     /**
      * Intenta llenar el tablero de Sudoku recursivamente
@@ -76,6 +83,9 @@ public class Sudoku implements ValidacionSudoku {
         for (int fila = 0; fila < SIZE; fila++) {
             for (int columna = 0; columna < SIZE; columna++) {
                 if (columna != columna_1 && columna != columna_2) {
+                    if (tablero[fila][columna] == 4){
+                        NumeroDeCuatros ++;
+                    }
                     tablero[fila][columna] = 0;
                 }
             }
@@ -210,7 +220,12 @@ public class Sudoku implements ValidacionSudoku {
      * @param valor El valor a colocar en la celda
      */
     public void setValor(int fila, int columna, int valor) {
-        if (validarMovimiento(fila, columna, valor)) tablero[fila][columna] = valor;
+        if (validarMovimiento(fila, columna, valor)) {
+            tablero[fila][columna] = valor;
+            if(valor == 4){
+                NumeroDeCuatros --;
+            }
+        }
     }
 
     /**
