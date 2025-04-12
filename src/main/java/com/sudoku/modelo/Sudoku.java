@@ -75,6 +75,35 @@ public class Sudoku implements ValidacionSudoku {
      * Garantiza que el Sudoku tenga una única solución
      */
     private void eliminarNumeros() {
+
+        int columna1 = RANDOM.nextInt(SIZE);
+        int columna2 = RANDOM.nextInt(SIZE);
+
+        while (columna1 == columna2 ) {
+            columna2 = RANDOM.nextInt(SIZE);
+        }
+
+        System.out.println(columna1);
+        System.out.println(columna2);
+
+        for(int fil = 0; fil < SIZE; fil++) {
+            for (int col = 0; col < SIZE; col ++) {
+                if (col != columna1 && col != columna2){
+                    if (tablero[fil][col] == 4) {
+                        cuatrosRestantes++;
+                    }
+                    tablero[fil][col] = 0;
+                    if (tablero[fil][col] == 4) {
+                        cuatrosRestantes++;
+                    }
+                    tablero[fil][col] = 0;
+                }
+
+            }
+
+        }
+
+        /*
         int celdasAEliminar = 12; // Número de celdas a eliminar
         while (celdasAEliminar > 0) {
             int fila = RANDOM.nextInt(SIZE); // Escoge una fila aleatoria
@@ -96,6 +125,7 @@ public class Sudoku implements ValidacionSudoku {
                 }
             }
         }
+        */
     }
 
     /**
